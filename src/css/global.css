@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3570f2;
+  --color-secondary: #000356;
+  --color-tertiary: rgb(43, 0, 31);
+  --color-lightColor: rgba(197, 197, 197, 0.371);
+}
+
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background: #e9e9e9dd;
+  color: rgb(5, 0, 0);
+  width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#limit4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#limit1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#limit1::first-letter {
+  text-transform: uppercase;
+}
+
+#scroll::-webkit-scrollbar {
+  background: transparent;
+}
+#scroll::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+#scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+h3::first-letter {
+  text-transform: uppercase;
+}
+
+input:focus {
+  outline: none;
+}
+
+button,
+a {
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.288);
+}
+
+.shadows {
+  box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.288);
+  /* border: 1px solid green; */
+}
+.out-shadows {
+  box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.14);
+  /* border: 1px solid green; */
+}
