@@ -8,8 +8,8 @@ export const Genres = component$(() => {
     { id: "1", title: "action", imageUrl: "action.jpg" },
     { id: "2", title: "horror", imageUrl: "horror.jpg" },
     { id: "3", title: "fantasy", imageUrl: "fantasy.jpg" },
-    { id: "4", title: "funny", imageUrl: "funny.jpg" },
-    { id: "5", title: "zombie", imageUrl: "zombie.jpg" },
+    { id: "4", title: "funny", imageUrl: "kid.jpg" },
+    { id: "5", title: "zombie", imageUrl: "horror.jpg" },
     { id: "6", title: "romance", imageUrl: "romance.jpg" },
     { id: "6", title: "kids", imageUrl: "kid.jpg" },
   ];

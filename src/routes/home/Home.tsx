@@ -1,4 +1,4 @@
-import { component$, $, useSignal } from "@builder.io/qwik";
+import { component$, $, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Introduction } from "./Introduction";
 import { Preview } from "./Preview";
 import { ScrollButton } from "~/components/ScrollButton";
@@ -14,10 +14,11 @@ import { Genres } from "./Genres";
 import { Connect } from "./Connect";
 
 export const Home = component$(() => {
+  const id = useSignal(true);
+
   const allMovies = useSignal(banners);
   const moveRight = $(() => {
-    // setId((prev) => !prev);
-
+    id.value = !id.value;
     const removeItem = allMovies.value[0];
     const otherItems = allMovies.value.slice(1, allMovies.value.length);
     const removeAndOther = [...otherItems, removeItem];
@@ -28,6 +29,12 @@ export const Home = component$(() => {
     const otherItems = allMovies.value.slice(1, allMovies.value.length);
     const removeAndOther = [removeItem, ...otherItems];
     allMovies.value = removeAndOther;
+  });
+
+  useVisibleTask$(() => {
+    setInterval(() => {
+      moveRight();
+    }, 5000);
   });
 
   const kdrama = topMovies.slice(5, 14);
@@ -45,7 +52,7 @@ export const Home = component$(() => {
         class=" w-[100vw] h-[100vh] h-[100dvh] flex  overflow-hidden bg-gradient-to-t from-primary to-secondary bg-center bg-contain object-contain bg-no-repeat sticky"
         id="bg"
       >
-        <Introduction allMovies={allMovies.value} />
+        <Introduction allMovies={allMovies.value} id={id.value} />
         <ScrollButton leftFunction={moveLeft} rightFunction={moveRight} />
         <Preview allMovies={allMovies.value} />
       </div>

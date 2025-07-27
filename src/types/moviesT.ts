@@ -13,6 +13,7 @@ export interface movieT {
   posterUrl: string;
   rate: number;
   description: string;
+  animId: string;
   director: string;
   comments: commentT[];
   continent: string;

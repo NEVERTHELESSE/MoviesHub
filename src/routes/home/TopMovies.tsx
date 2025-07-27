@@ -14,25 +14,17 @@ import { Rates } from "~/components/Rates";
 import { Image } from "~/components/Image";
 import MovieLoading from "~/loading/MovieLoading";
 import axios from "axios";
-import { limits } from "~/func/Limits";
 const api = import.meta.env.VITE_API;
-// export const useData = routeLoader$(async () => {
-//   const response = await await axios({
-//       url: `${api}topMovies`,
-//       params: { f: '', l: limits() },
-//     }).then((res) => res.data);;
-//   return response.data;
-// });
 
 export const TopMovies = component$(() => {
   const selected = useSignal("");
   const data = useSignal<any>([]);
 
-  useTask$(async ({ track }) => {
+  useVisibleTask$(async ({ track }) => {
     track(() => selected.value);
-    await await axios({
+    axios({
       url: `${api}topMovies`,
-      params: { f: selected.value, l: limits(1560) },
+      // params: { f: selected.value, l: limits(1560) },
     }).then((res) => (data.value = res.data));
   });
 

@@ -1,4 +1,4 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Navigation } from "./Navigation";
 import { UserInfo } from "./UserInfo";
 import { PngImage } from "../PngImage";
@@ -11,10 +11,11 @@ const Header = component$(() => {
 
   const search = useSignal(true);
   const userInfo = useSignal({
-    username: "ajibola",
-    profilePics: "a",
+    username: "",
+    profilePics: "",
     isLoading: true,
   });
+
   return (
     <header
       class={`fixed p-2 sm:px-6 w-full bg-[#0000006c] flex items-center z-20 justify-between ${
@@ -51,10 +52,10 @@ const Header = component$(() => {
                 />
               </summary>
               <button
-                class="absolute top-12 w-max bg-tertiary px-2"
+                class="absolute top-12 w-max bg-tertiary px-2 cursor-pointer"
                 onClick$={() => {
-                  // window.localStorage.clear();
-                  // window.location.reload();
+                  window.localStorage.clear();
+                  window.location.reload();
                 }}
               >
                 Log Out

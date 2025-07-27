@@ -9,7 +9,7 @@ export const LatestMovie = component$(() => {
       <Title specificTitle="Latest Movies" />
       <div class="flex ">
         <div class="w-[30rem] h-[30rem]">
-          <Image src="movies/movie4.jpg" />
+          <Image src="movies/ballerina.jpg" />
         </div>
         <div class="w-[30rem] h-[30rem] mx-2">
           <PngImage src="top/user.png" />

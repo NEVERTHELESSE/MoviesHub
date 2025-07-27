@@ -19,7 +19,7 @@ export const banners = [
   {
     id: "2",
     title: "Stroke the Parasite",
-    animId: "zoom",
+    animId: "zoom1",
     posterUrl: "bg2.jpg",
     description: `  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Neque hic, at illum soluta perferendis accusantium fugit
@@ -53,7 +53,7 @@ export const banners = [
   {
     id: "4",
     title: "Thor",
-    animId: "zoom",
+    animId: "zoom1",
     posterUrl: "bg4.jpg",
     description: `  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                     Neque hic, at illum soluta perferendis accusantium fugit

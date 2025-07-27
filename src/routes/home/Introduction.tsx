@@ -5,12 +5,9 @@ import { Rates } from "~/components/Rates";
 import { movieT } from "~/types/moviesT";
 import { Image } from "~/components/Image";
 
-type propsT = { allMovies: movieT[] };
-const imageApi = import.meta.env.IMAGE_API;
+type propsT = { allMovies: movieT[]; id: string };
 
-export const Introduction = component$(({ allMovies }: propsT) => {
-  const id = useSignal(true);
-
+export const Introduction = component$(({ allMovies, id }: propsT) => {
   return (
     <div class="flex ">
       {allMovies.map((movie, index) => (
