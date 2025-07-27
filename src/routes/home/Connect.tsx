@@ -1,4 +1,4 @@
-import { component$, useSignal, $, QwikSubmitEvent } from "@builder.io/qwik";
+import { component$, useSignal, $ } from "@builder.io/qwik";
 import axios from "axios";
 import { Image } from "~/components/Image";
 import { Title } from "~/components/Title";
@@ -10,9 +10,7 @@ export const Connect = component$(() => {
   const api = import.meta.env.VITE_API;
 
   const submitMessage = $(async () => {
-    await axios({ url: `${api}notify`, data, method: "POST" }).then(
-      (res) => {}
-    );
+    await axios({ url: `${api}notify`, data, method: "POST" });
   });
   const changeInfo = $((e: InputEvent & { target: HTMLInputElement }) => {
     data.value = { ...data.value, [e.target.name]: e.target.value };
@@ -22,10 +20,7 @@ export const Connect = component$(() => {
     <section class="border-t-2 border-t-primary bg-primary p-8 flex text-white flex-col ">
       <Title specificTitle="Get in Touch - Notify🔔 When New Movies is Out" />
       <div class="flex justify-center">
-        <div
-          // onSubmit$={submitMessage}
-          class="flex mx-2 flex-col w-[30rem] bg-secondary text-white rounded-2xl p-6"
-        >
+        <div class="flex mx-2 flex-col w-[30rem] bg-secondary text-white rounded-2xl p-6">
           {optionField.map(({ id, holder, label, name }) => (
             <div key={id}>
               <label for="" class="">

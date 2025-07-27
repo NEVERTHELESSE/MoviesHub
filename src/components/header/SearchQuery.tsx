@@ -8,7 +8,6 @@ import {
 } from "@builder.io/qwik";
 import { SearchMovie } from "./SearchMovie";
 import { random } from "~/constants/random";
-import { useLocation } from "@builder.io/qwik-city";
 import SpinnerLoading from "~/loading/SpinnerLoading";
 
 export const SearchQuery = component$(() => {
@@ -39,29 +38,6 @@ export const SearchQuery = component$(() => {
     }
   );
 
-  const location = useLocation().url.pathname;
-  // useTask$(async ({ track }) => {
-  //   track(() => query.value);
-  //   await axios({ url: `${api}searchM`, params: { s: query.value } }).then(
-  //     (res) => (posts.value = res.data)
-  //   );
-  // });
-  // useTask$(({ track }) => {
-  //   track(() => location);
-  //   query.value = "";
-  // });
-
-  // const { data, isLoading, error } = useSWR("title", fetcher);
-
-  // useTask$(async ({ track }) => {
-  //   track(() => query.value);
-  //   query.value = "";
-  //   const res = await axios({
-  //     url: `${api}searchM`,
-  //     params: { s: query.value },
-  //   });
-  //   posts.value = res.data;
-  // });
   const holder = isLoading.value ? "Movie Hub" : random(posts.value);
 
   return (

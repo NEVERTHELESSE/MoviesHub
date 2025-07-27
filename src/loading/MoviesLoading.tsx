@@ -1,5 +1,3 @@
-import { limits } from "../func/Limits";
-
 function Loading() {
   return (
     <div class=" rounded-lg  md:rounded-2xl overflow-hidden mx-1 md:mx-4  my-2 w-[20rem]   bg-gray-300 relative  shadows h-[25rem] flex flex-col">
@@ -8,10 +6,6 @@ function Loading() {
   );
 }
 const number: number[] = [];
-const limit = limits(1560);
-for (let i = 0; i < limit / 2; i++) {
-  number.push(i);
-}
 
 export default function MoviesLoading() {
   return (

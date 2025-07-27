@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
-import { Image } from "~/components/Image";
-import { PngImage } from "~/components/PngImage";
-import { Title } from "~/components/Title";
+import { Image } from "../../components/Image";
+import { PngImage } from "../../components/PngImage";
+import { Title } from "../../components/Title";
 
 export const LatestMovie = component$(() => {
   return (

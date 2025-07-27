@@ -1,29 +1,16 @@
-import { $, component$, useSignal } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 import { DocumentHead, Link } from "@builder.io/qwik-city";
 import { PngImage } from "~/components/PngImage";
 
 export default component$(() => {
   const userInfo = useSignal({
-    username: "",
     email: "",
     password: "",
-    confirm: "",
-  });
-
-  const changeInput = $((e: InputEvent & { target: HTMLInputElement }) => {
-    userInfo.value = { ...userInfo, [e.target.name]: e.target.value };
-  });
-  const create = $((e) => {
-    e.preventDefault();
-    console.log();
   });
 
   return (
     <section class="w-full h-[100vh] flex items-center justify-center">
-      <form
-        class="w-[30rem] rounded-lg p-4 bg-primary flex flex-col items-center"
-        onSubmit={create}
-      >
+      <form class="w-[30rem] rounded-lg p-4 bg-primary flex flex-col items-center">
         <div class="w-20 h-20">
           <PngImage src="/iconBig.png" />
         </div>
@@ -34,7 +21,9 @@ export default component$(() => {
           placeholder="Email Address"
           class="p-4 bg-lightColor rounded-lg w-full my-2"
           name="email"
-          onChange$={changeInput}
+          onChange$={(e: InputEvent & { target: HTMLInputElement }) =>
+            (userInfo.value.email = e.target.value)
+          }
         />
         <input
           type="password"
@@ -43,7 +32,9 @@ export default component$(() => {
           class="p-4 bg-lightColor rounded-lg w-full my-2"
           minLength={6}
           name="password"
-          onChange$={changeInput}
+          onChange$={(e: InputEvent & { target: HTMLInputElement }) =>
+            (userInfo.value.password = e.target.value)
+          }
         />
 
         <button class="p-4 bg-lightColor bg-secondary w-full rounded-lg text-white ">

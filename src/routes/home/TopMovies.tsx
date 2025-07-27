@@ -1,19 +1,14 @@
-import {
-  component$,
-  useSignal,
-  useOnWindow,
-  useVisibleTask$,
-  useTask$,
-} from "@builder.io/qwik";
-import { Title } from "~/components/Title";
+/* eslint-disable qwik/no-use-visible-task */
+import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { TopMoviesFilter } from "./TopMoviesFilter";
-import { rSpace } from "~/func/rSpace";
-import { Link } from "@builder.io/qwik-city";
-import { movieT } from "~/types/moviesT";
-import { Rates } from "~/components/Rates";
-import { Image } from "~/components/Image";
-import MovieLoading from "~/loading/MovieLoading";
 import axios from "axios";
+import { Title } from "../../components/Title";
+import MovieLoading from "../../loading/MovieLoading";
+import { movieT } from "../../types/moviesT";
+import { Link } from "@builder.io/qwik-city";
+import { rSpace } from "../../func/rSpace";
+import { Image } from "../../components/Image";
+import { Rates } from "../../components/Rates";
 const api = import.meta.env.VITE_API;
 
 export const TopMovies = component$(() => {

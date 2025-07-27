@@ -1,42 +1,29 @@
-import { $, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
-import {
-  routeLoader$,
-  useLocation,
-  type DocumentHead,
-} from "@builder.io/qwik-city";
+import { $, component$, useSignal } from "@builder.io/qwik";
+import { routeLoader$, type DocumentHead } from "@builder.io/qwik-city";
 import axios from "axios";
-import { Image } from "~/components/Image";
-import { Title } from "~/components/Title";
-import { WatchDownload } from "~/components/WatchDownload";
+import { Title } from "../../../components/Title";
+import { Image } from "../../../components/Image";
+import { Casts } from "../../../components/Casts";
+import { WatchDownload } from "../../../components/WatchDownload";
 import { Comment } from "../Comment";
 import { AddComment } from "../AddComment";
-import { limits } from "~/func/Limits";
-import { Casts } from "~/components/Casts";
-import { SuggestMovie } from "../SuggestMovie";
-import SuggestLoading from "~/loading/SuggestLoading";
+import SuggestLoading from "../../../loading/SuggestLoading";
 
 const api = import.meta.env.VITE_API;
 
 export const useData = routeLoader$(async (requestEvent) => {
-  const response = await axios({
-    url: `${api}movie`,
-    params: { t: requestEvent.query },
-  });
-  return response.data;
+  try {
+    const response = await axios({
+      url: `${api}movie`,
+      params: { t: requestEvent.query },
+    });
+    return response.data;
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 export default component$(() => {
-  // const data = useSignal({
-  //   title: "",
-  //   posterUrl: "",
-  //   description: "",
-  //   director: "",
-  //   year: 0,
-  //   genres: "",
-  //   rate: 1,
-  //   comments: [],
-  // });
-  const isLoading = useSignal(true);
   const showFull = useSignal(false);
 
   const toggleShowFull = $(() => {
@@ -78,11 +65,7 @@ export default component$(() => {
               <Casts casts={data.value.casts} />
             </div>
             <p class="my-4 text-2xl">{data.value.description.slice(0, 300)}</p>
-            <WatchDownload
-              downloadLink={`/movies/${data.value.posterUrl}`}
-              title={data.value.title}
-              rate={data.value.rate}
-            />
+            <WatchDownload downloadLink={`/movies/${data.value.posterUrl}`} />
             {data.value.comments.length > 0 ? (
               <Comment comments={data.value.comments} />
             ) : (

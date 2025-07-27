@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
-import { Image } from "~/components/Image";
-import { Title } from "~/components/Title";
+import { Image } from "../../components/Image";
+import { Title } from "../../components/Title";
 
 export const Genres = component$(() => {
   const genres = [

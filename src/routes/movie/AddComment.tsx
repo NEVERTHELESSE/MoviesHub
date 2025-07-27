@@ -1,3 +1,4 @@
+/* eslint-disable qwik/no-use-visible-task */
 import { $, component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import axios from "axios";
 import { ProfileImage } from "~/components/ProfileImage";
@@ -20,10 +21,6 @@ export const AddComment = component$(() => {
     e.preventDefault();
     axios.patch(`${api}addComment?t=${search}`, {
       userInfo,
-      // username: username,
-      // comment,
-      // pics: profilePics,
-      // date: new Date(),
     });
   });
 
@@ -37,7 +34,7 @@ export const AddComment = component$(() => {
       </div>
       <input
         type="text"
-        onChange$={(e: InputEvent & { target: value }) =>
+        onChange$={(e: InputEvent & { target: HTMLInputElement }) =>
           (comment.value = e.target.value)
         }
         value={comment.value}

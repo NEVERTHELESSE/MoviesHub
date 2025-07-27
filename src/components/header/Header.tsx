@@ -1,3 +1,4 @@
+/* eslint-disable qwik/no-use-visible-task */
 import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Navigation } from "./Navigation";
 import { UserInfo } from "./UserInfo";
@@ -14,6 +15,12 @@ const Header = component$(() => {
     username: "",
     profilePics: "",
     isLoading: true,
+  });
+
+  useVisibleTask$(() => {
+    window.addEventListener("offline", () => {
+      alert("you are offline");
+    });
   });
 
   return (

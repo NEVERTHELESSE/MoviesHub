@@ -1,3 +1,4 @@
+/* eslint-disable qwik/no-use-visible-task */
 import {
   $,
   component$,
@@ -10,6 +11,7 @@ import axios from "axios";
 import { Image } from "~/components/Image";
 import { series } from "~/data/series";
 import { rSpace } from "~/func/rSpace";
+import MovieLoading from "~/loading/MovieLoading";
 
 export default component$(() => {
   const scroll = useSignal(70);
@@ -36,61 +38,72 @@ export default component$(() => {
   });
   const api = import.meta.env.VITE_API;
   const movies = useSignal([]);
+  const error = useSignal(false);
   useTask$(async ({ track }) => {
     track(() => category.value);
-    await await axios({
-      url: `${api}topMovies`,
-      params: { s: category.value },
-      // }).then((res) => console.log(res.data));
-    }).then((res) => (movies.value = res.data));
+    try {
+      await axios({
+        url: `${api}topMovies`,
+        params: { s: category.value },
+      }).then((res) => (movies.value = res.data));
+    } catch (error) {
+      console.log(error);
+      error.value = true;
+    }
   });
 
   return (
-    <div class="py-14   ">
-      {/* <button onClick$={moveLeft}>move</button> */}
-      <div class="flex items-center justify-center relative">
-        <div
-          class="flex duration-700"
-          style={{
-            transform: `translateX(-${scroll.value - 15}vw)`,
-          }}
-        >
-          {allSeries.value.map((list) => (
+    <>
+      {error.value ? (
+        <MovieLoading />
+      ) : (
+        <div class="py-14 ">
+          {/* <button onClick$={moveLeft}>move</button> */}
+          <div class="flex items-center justify-center relative">
             <div
-              class="flex min-w-[70%] h-[35rem] mt-4 relative p-1 rounded-2xl overflow-hidden"
-              key={list.id}
+              class="flex duration-700"
+              style={{
+                transform: `translateX(-${scroll.value - 15}vw)`,
+              }}
             >
-              <div class="w-full h-full rounded-2xl overflow-hidden bg-blue-400">
-                <Image src={`bg/${list.posterUrl}`} />
-              </div>
-              <div class="absolute bottom-4 w-full bg-[#00000066]  p-12">
-                <h1 class="text-6xl font-bold text-white">{list.title}</h1>
-              </div>
+              {allSeries.value.map((list) => (
+                <div
+                  class="flex min-w-[70%] h-[35rem] mt-4 relative p-1 rounded-2xl overflow-hidden"
+                  key={list.id}
+                >
+                  <div class="w-full h-full rounded-2xl overflow-hidden bg-blue-400">
+                    <Image src={`bg/${list.posterUrl}`} />
+                  </div>
+                  <div class="absolute bottom-4 w-full bg-[#00000066]  p-12">
+                    <h1 class="text-6xl font-bold text-white">{list.title}</h1>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+            <div class="flex absolute bottom-1">
+              {series.map((banner, index) => (
+                <div
+                  key={banner.id}
+                  class={`w-3 h-3 ${index == selected.value ? "bg-secondary" : "bg-primary"}  rounded-full mx-1`}
+                ></div>
+              ))}
+            </div>
+          </div>
+          <h2 class="text-3xl mx-4">{series[selected.value].describe}</h2>
+          <div class="p-8 flex">
+            {movies.value.map((movie, index) => (
+              <Link
+                class="min-w-[20rem] mr-2 h-[15rem] "
+                key={index}
+                href={`/movie?${rSpace(movie.title)}`}
+              >
+                <Image src={`/movies/${movie.posterUrl}`} />
+              </Link>
+            ))}
+          </div>
         </div>
-        <div class="flex absolute bottom-1">
-          {series.map((banner, index) => (
-            <div
-              key={banner.id}
-              class={`w-3 h-3 ${index == selected.value ? "bg-secondary" : "bg-primary"}  rounded-full mx-1`}
-            ></div>
-          ))}
-        </div>
-      </div>
-      <h2 class="text-3xl mx-4">{series[selected.value].describe}</h2>
-      <div class="p-8 flex">
-        {movies.value.map((movie, index) => (
-          <Link
-            class="min-w-[20rem] mr-2 h-[15rem] "
-            key={index}
-            href={`/movie?${rSpace(movie.title)}`}
-          >
-            <Image src={`/movies/${movie.posterUrl}`} />
-          </Link>
-        ))}
-      </div>
-    </div>
+      )}
+    </>
   );
 });
 

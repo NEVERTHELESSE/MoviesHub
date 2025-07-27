@@ -1,17 +1,16 @@
 import { component$, $, useSignal, useVisibleTask$ } from "@builder.io/qwik";
 import { Introduction } from "./Introduction";
 import { Preview } from "./Preview";
-import { ScrollButton } from "~/components/ScrollButton";
 import { banners } from "./banners";
 import { TopMovies } from "./TopMovies";
 import { CastFilter } from "./CastFilter";
 import { Install } from "./Install";
 import { TopCast } from "./TopCast";
 import { CountryMovies } from "./CountryMovies";
-import { topMovies } from "~/data/topMovies";
 import { LatestMovie } from "./Lastest";
 import { Genres } from "./Genres";
 import { Connect } from "./Connect";
+import { ScrollButton } from "../../components/ScrollButton";
 
 export const Home = component$(() => {
   const id = useSignal(true);
@@ -31,23 +30,15 @@ export const Home = component$(() => {
     allMovies.value = removeAndOther;
   });
 
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     setInterval(() => {
       moveRight();
     }, 5000);
   });
 
-  const kdrama = topMovies.slice(5, 14);
-  const Cdrama = topMovies.reverse();
-  const Africandrama = topMovies.reverse().slice(5, 14);
-  const countries = [
-    { id: "1", title: "KDrama", movies: kdrama },
-    { id: "2", title: "CDrama", movies: Cdrama },
-    { id: "3", title: "African Drama", movies: Africandrama },
-  ];
-
   return (
-    <section class="w-[100vw">
+    <section class="w-[100vw]">
       <div
         class=" w-[100vw] h-[100vh] h-[100dvh] flex  overflow-hidden bg-gradient-to-t from-primary to-secondary bg-center bg-contain object-contain bg-no-repeat sticky"
         id="bg"
@@ -60,13 +51,8 @@ export const Home = component$(() => {
       <CastFilter />
       <Install />
       <TopCast />
-      {countries.map((country, index) => (
-        <CountryMovies
-          title={country.title}
-          key={index}
-          movies={country.movies}
-        />
-      ))}
+      <CountryMovies />
+
       <LatestMovie />
       <Genres />
       <Connect />

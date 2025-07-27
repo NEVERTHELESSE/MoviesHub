@@ -1,11 +1,11 @@
-import { component$, useSignal } from "@builder.io/qwik";
-import { WatchDownload } from "~/components/WatchDownload";
-import { Casts } from "~/components/Casts";
-import { Rates } from "~/components/Rates";
-import { movieT } from "~/types/moviesT";
-import { Image } from "~/components/Image";
+import { component$ } from "@builder.io/qwik";
+import { Image } from "../../components/Image";
+import { bannerT } from "../../types/banner";
+import { Rates } from "../../components/Rates";
+import { Casts } from "../../components/Casts";
+import { WatchDownload } from "../../components/WatchDownload";
 
-type propsT = { allMovies: movieT[]; id: string };
+type propsT = { allMovies: bannerT[]; id: boolean };
 
 export const Introduction = component$(({ allMovies, id }: propsT) => {
   return (

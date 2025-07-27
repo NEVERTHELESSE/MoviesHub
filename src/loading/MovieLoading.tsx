@@ -14,11 +14,12 @@ function Loading() {
 const MovieLoading = component$(() => {
   const number: number[] = [];
   const limit = useSignal<number>(0);
+  // eslint-disable-next-line qwik/no-use-visible-task
   useVisibleTask$(() => {
     limit.value = limits(window.innerWidth);
   });
 
-  for (let i = 0; i < limit.value / 2; i++) {
+  for (let i = 0; i < 30; i++) {
     number.push(i);
   }
   return (

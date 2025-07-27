@@ -1,8 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
-import { Image } from "~/components/Image";
-import { rSpace } from "~/func/rSpace";
-import { movieT } from "~/types/moviesT";
+import { Image } from "../../components/Image";
+import { rSpace } from "../../func/rSpace";
+import { movieT } from "../../types/moviesT";
 
 type propsT = { movies: movieT[] };
 

@@ -1,9 +1,9 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
 import { type DocumentHead } from "@builder.io/qwik-city";
-import MoviesLoading from "~/loading/MoviesLoading";
 import { AllMovies } from "./AllMovies";
 import axios from "axios";
-import { limits } from "~/func/Limits";
+import { limits } from "../../func/Limits";
+import MoviesLoading from "../../loading/MoviesLoading";
 
 export default component$(() => {
   const api = import.meta.env.VITE_API;
@@ -12,10 +12,14 @@ export default component$(() => {
   const movies = useSignal([]);
   useTask$(async ({ track }) => {
     track(() => isDown.value);
-    await axios({
-      url: `${api}movies`,
-      params: { f: "", l: limits(1560) },
-    }).then((res) => (movies.value = res.data));
+    try {
+      await axios({
+        url: `${api}movies`,
+        params: { f: "", l: limits(1560) },
+      }).then((res) => (movies.value = res.data));
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   return (
