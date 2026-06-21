@@ -1,0 +1,9 @@
+#spinner-loading {
+  animation: spinner-loading infinite linear 1s;
+}
+
+@keyframes spinner-loading {
+  to {
+    transform: rotate(360deg);
+  }
+}

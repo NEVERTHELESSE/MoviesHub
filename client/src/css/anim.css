@@ -1,0 +1,53 @@
+#zoom {
+  animation: zoom 1s;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0) translateX(100vw) translateY(100vh);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+#zoom1 {
+  animation: zoom1 1s;
+}
+
+@keyframes zoom1 {
+  from {
+    transform: scale(0) translateX(100vw) translateY(100vh);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.left {
+  animation: left 1s;
+}
+
+@keyframes left {
+  from {
+    transform: translateX(-30rem);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.bottom {
+  animation: bottom 1s;
+}
+
+@keyframes bottom {
+  from {
+    transform: translateY(30rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.glow {
+  backdrop-filter: blur(20px);
+}
